@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableInfo name="s_statements" type="table">
+    <Item name="s_statements_id" type="INTEGER" identity="true" property="id" />
+    <Item name="s_timestamp"  type="LONG" notnull="true" unique="false" property="sTimestamp" />
+    <Item name="s_user_id"  type="INTEGER" notnull="true" unique="false" property="sUserId"/>
+    <Item name="s_money_account_id"  type="INTEGER" notnull="true" unique="false" property="sMoneyAccountId" />
+    <Item name="s_mime_type"  type="INTEGER" notnull="true" unique="true" property="mStatementsType" />
+    <Item name="s_money"  type="LONG" notnull="true" unique="false" property="sMoney" />
+    <Item name="s_description"  type="CHAR" size="65535" notnull="false" unique="false" property="sDescription" default="" />
+    <Item name="s_images"  type="CHAR" size="65535" notnull="false" unique="false" property="sImages" default="" />
+    <Item name="s_relation_id"  type="INTEGER" notnull="false" unique="false" property="sRelationId"/>
+    <Item name="s_relation_type"  type="INTEGER" notnull="false" unique="false" property="sRelationType"/>
+</TableInfo>
+    <!-- integer类型默认32位 ，short默认16位 ，long默认64位  -->

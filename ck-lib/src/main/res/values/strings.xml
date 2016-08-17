@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">LotteryAgent</string>
+    <string name="loading">加载中…</string>
+    <string name="load_more">查看更多</string>
+    <string name="no_more">没有更多</string>
+    <string name="cube_ptr_hours_ago"> 小时之前</string>
+    <string name="cube_ptr_last_update">上次更新: </string>
+    <string name="cube_ptr_minutes_ago"> 分钟之前</string>
+    <string name="cube_ptr_pull_down">下拉</string>
+    <string name="cube_ptr_pull_down_to_refresh">下拉刷新</string>
+    <string name="cube_ptr_refresh_complete">更新完成.</string>
+    <string name="cube_ptr_refreshing">加载中…</string>
+    <string name="cube_ptr_release_to_refresh">释放刷新</string>
+    <string name="cube_ptr_seconds_ago"> 秒之前</string>
+
+
+    <!-- 权限拒绝提示 -->
+    <string name="permission_denied">应用没有%s权限</string>
+    <string name="android_permission_READ_CALENDAR">读取日历</string>
+    <string name="android_permission_WRITE_CALENDAR">修改日历</string>
+    <string name="android_permission_CAMERA">使用相机</string>
+    <string name="android_permission_READ_CONTACTS">读取联系人</string>
+    <string name="android_permission_GET_ACCOUNTS">读取账户</string>
+    <string name="android_permission_ACCESS_FINE_LOCATION">获取当前位置</string>
+    <string name="android_permission_ACCESS_COARSE_LOCATION">获取当前位置</string>
+    <string name="android_permission_RECORD_AUDIO">使用录音机</string>
+    <string name="android_permission_READ_PHONE_STATE">读取手机信息</string>
+    <string name="android_permission_CALL_PHONE">拨打电话</string>
+    <string name="android_permission_READ_CALL_LOG">读取电话日志</string>
+    <string name="android_permission_WRITE_CALL_LOG">修改电话日志</string>
+    <string name="android_permission_USE_SIP">启用SIP</string>
+    <string name="android_permission_PROCESS_OUTGOING_CALLS">监听呼出电话</string>
+    <string name="android_permission_BODY_SENSORS">传感器</string>
+    <string name="android_permission_SEND_SMS">发送信息</string>
+    <string name="android_permission_RECEIVE_SMS">接收信息</string>
+    <string name="android_permission_READ_SMS">读取信息</string>
+    <string name="android_permission_RECEIVE_WAP_PUSH">接收WAP信息</string>
+    <string name="android_permission_RECEIVE_MMS">接收MMS信息</string>
+    <string name="android_permission_READ_EXTERNAL_STORAGE">读取SD卡</string>
+    <string name="android_permission_WRITE_EXTERNAL_STORAGE">修改SD卡</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:id="@+id/root_layout">
+
+    <include layout="@layout/header_layout"></include>
+
+    <FrameLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/header"
+        android:id="@+id/content_view">
+
+        <com.uuzz.android.ui.view.ShadeView
+            android:id="@+id/v_shader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/shader"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

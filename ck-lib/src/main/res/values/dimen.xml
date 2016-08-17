@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="primary_margin">15dp</dimen>
+    <dimen name="primary_List_margin">10dp</dimen>
+    <dimen name="primary_text_size">17dp</dimen>
+
+    <dimen name="second_text_size">15dp</dimen>
+    <dimen name="third_text_size">12dp</dimen>
+    <dimen name="fourth_text_size">11dp</dimen>
+    <dimen name="fifth_text_size">10dp</dimen>
+    <dimen name="text_space">5dp</dimen>
+    <dimen name="space">2dp</dimen>
+    <dimen name="head_icon_size">19dp</dimen>
+    <dimen name="head_icon_sm_size">12dp</dimen>
+    <dimen name="head_icon_min_size">20dp</dimen>
+    <dimen name="head_icon_max_size">50dp</dimen>
+</resources>

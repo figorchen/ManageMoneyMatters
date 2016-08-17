@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_income" type="id" />
+    <item name="btn_outcome" type="id" />
+    <item name="btn_choose_user_account" type="id" />
+</resources>

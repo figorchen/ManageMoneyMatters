@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TableInfo name="m_money_account" type="table">
+    <Item name="m_money_account_id" type="INTEGER" identity="true" property="id" />
+	<Item name="m_user_id"  type="INTEGER" notnull="true" unique="false" property="mUserId" />
+	<Item name="m_mime_type"  type="INTEGER" notnull="true" unique="false" property="mAccountType"/>
+	<Item name="m_disposable"  type="BOOLEAN" notnull="true" unique="false" property="mDisposable" />
+	<Item name="m_card_id"  type="INTEGER" notnull="false" unique="true" property="mCardId" />
+	<Item name="m_description"  type="CHAR" size="65535" notnull="false" unique="false" property="mDescription" default="" />
+	<Item name="m_balance"  type="LONG" notnull="false" unique="false" property="mDescription" default="0" />
+</TableInfo>
+<!-- integer类型默认32位 ，short默认16位 ，long默认64位  -->

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">理财</string>
+    <string name="main_income">收入</string>
+    <string name="main_outcome">支出</string>
+    <string name="main_choose_user">选择账户</string>
+
+    <!-- 流水类型 -->
+    <string name="statements_type_eat">吃饭</string>
+    <string name="statements_type_home">房租</string>
+    <string name="statements_type_traffic">交通</string>
+    <string name="statements_type_phone">话费</string>
+
+    <string name="statements_type_amuse">娱乐消费</string>
+    <string name="statements_type_physical_exercise">健身</string>
+    <string name="statements_type_sickness">疾病</string>
+    <string name="statements_type_clothes">穿戴消费</string>
+    <string name="statements_type_cosmetics">化妆品</string>
+    <string name="statements_type_other">其他</string>
+    <string name="statements_type_relationship">人际消费</string>
+    <string name="statements_type_love">情感消费</string>
+
+    <string name="statements_type_accident_outcome">意外支出</string>
+
+    <string name="statements_type_lend_to_someone">外借</string>
+    <string name="statements_type_return_to_someone">还别人钱</string>
+
+    <string name="statements_type_wages">工资</string>
+    <string name="statements_type_accident_income">意外收入</string>
+    <string name="statements_type_someone_return">还款收入</string>
+    <string name="statements_type_borrow_from_someone">借款收入</string>
+
+
+
+
+
+</resources>
