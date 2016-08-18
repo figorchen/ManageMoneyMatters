@@ -85,6 +85,9 @@ public class FileLog {
      * 历 史: (版本) 谌珂 2015/12/22 注释 <br/>
      */
     private synchronized void flushLog(){
+        if(!IS_OUTPUT){    //如果不让输出则直接返回
+            return;
+        }
         isDirectWrite = true;
         synchronized (mLogCache){
             mLogCache.append(createLogHeader("tip", TAG))

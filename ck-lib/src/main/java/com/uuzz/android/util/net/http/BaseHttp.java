@@ -66,7 +66,7 @@ public abstract class BaseHttp<E, T> {
 							HttpRequestListener<T> mListener){
 		listener = mListener;
 		asyncTask = new MyAsyncTask();
-		asyncTask.execute(requestParams);
+		asyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, requestParams);
 		return asyncTask;
 	}
 

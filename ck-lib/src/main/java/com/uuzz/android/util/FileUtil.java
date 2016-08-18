@@ -11,6 +11,8 @@ import com.uuzz.android.util.log.UUZZLog;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
 
 public class FileUtil {
 
@@ -182,6 +184,32 @@ public class FileUtil {
 		File[] files = file.listFiles();
 		for (int i = 0; i < files.length; i++) {
 			files[i].delete();
+		}
+	}
+
+	/**
+	 * 描 述：关闭字节流<br/>
+	 * 作 者：谌珂<br/>
+	 * 历 史: (1.0.0) 谌珂 2016/8/18 <br/>
+	 */
+	public static void closeInputStream(InputStream ips) {
+		try {
+			ips.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 描 述：关闭读入流<br/>
+	 * 作 者：谌珂<br/>
+	 * 历 史: (1.0.0) 谌珂 2016/8/18 <br/>
+	 */
+	public static void closeReader(Reader reader) {
+		try {
+			reader.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

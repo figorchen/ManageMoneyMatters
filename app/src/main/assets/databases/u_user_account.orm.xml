@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TableInfo name="u_user_account" type="table">
-	<Item name="u_user_id" type="INTEGER" identity="true" property="id" />
+	<Key name="u_user_id" type="INTEGER" identity="true" property="id" />
 	<Item name="u_user_name"  type="CHAR" size="65535" notnull="true" unique="true" property="mUserName" />
 	<Item name="u_user_psd"  type="CHAR" size="65535" notnull="true" unique="true" property="mUserPsd" />
 	<Item name="u_user_icon"  type="CHAR" size="65535" notnull="false" unique="false" property="mUserIcon" default=""/>

@@ -78,7 +78,7 @@ public class PermissionUtil {
 
             //申请获取权限
             ActivityCompat.requestPermissions((UUZZActivity)context, notAppliedPermissions.toArray(new String[notAppliedPermissions.size()]), requestCode);
-        } else {
+        } else if(deniedTask != null) {
             deniedTask.run();
         }
     }

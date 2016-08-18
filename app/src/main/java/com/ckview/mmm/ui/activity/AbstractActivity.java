@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 
 import com.uuzz.android.util.PermissionUtil;
 import com.uuzz.android.util.ioc.utils.InjectUtils;
+import com.uuzz.android.util.log.UUZZLog;
 
 /**
  * 项目名称：ManageMoneyMatters <br/>
@@ -23,9 +24,12 @@ import com.uuzz.android.util.ioc.utils.InjectUtils;
  */
 public class AbstractActivity extends Activity {
 
+    protected UUZZLog logger;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        logger = new UUZZLog(getClass());
         InjectUtils.injectContentView(this);
         InjectUtils.injectViews(getWindow().getDecorView(), this);
         InjectUtils.injectEvents(this);

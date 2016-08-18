@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TableInfo name="s_statements_relation_type" type="table">
-    <Item name="s_relation_id" type="INTEGER" identity="true" property="typeId" />
+    <Key name="s_relation_id" type="INTEGER" identity="false" notnull="true" unique="true" property="typeId" />
 	<Item name="s_name"  type="CHAR" size="65535" notnull="true" unique="true" property="sName" />
-	<Item name="s_threshold"  type="LONG" notnull="false" unique="false" property="sThreshold" default="-1" />
+	<Item name="s_threshold"  type="DOUBLE" notnull="false" unique="false" property="sThreshold" default="-1" />
+	<Item name="s_parent_id"  type="INTEGER" notnull="true" unique="false" property="sParentId" default="-1" />
+	<Item name="s_left_bound"  type="INTEGER" notnull="true" unique="false" property="sLeftBound" default="-1" />
+	<Item name="s_right_bound"  type="INTEGER" notnull="true" unique="false" property="sRightBound" default="-1" />
+	<Item name="s_leaf"  type="BOOLEAN" notnull="true" unique="false" property="sIsLeaf" default="false" />
 </TableInfo>
 <!-- integer类型默认32位 ，short默认16位 ，long默认64位  -->

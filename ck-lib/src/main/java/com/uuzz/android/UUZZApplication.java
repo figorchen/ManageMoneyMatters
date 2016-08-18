@@ -30,6 +30,5 @@ public class UUZZApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Common.PACKAGE_NAME = getPackageName();
-        logger.d("Application is created.");
     }
 }

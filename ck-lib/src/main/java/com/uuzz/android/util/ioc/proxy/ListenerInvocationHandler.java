@@ -1,7 +1,7 @@
 package com.uuzz.android.util.ioc.proxy;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

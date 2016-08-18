@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TableInfo name="c_card_info" type="table">
-    <Item name="c_card_id" type="INTEGER" identity="true" property="id" />
+    <Key name="c_card_id" type="INTEGER" identity="true" property="id" />
 	<Item name="c_card_number"  type="CHAR" size="65535" notnull="true" unique="true" property="mCardNumber" />
 	<Item name="c_bank_name"  type="CHAR" size="65535" notnull="true" unique="false" property="mBankName" />
 </TableInfo>

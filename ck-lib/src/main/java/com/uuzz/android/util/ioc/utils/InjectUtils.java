@@ -1,10 +1,10 @@
 package com.uuzz.android.util.ioc.utils;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Size;
 import android.util.SizeF;
@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.uuzz.android.ui.activity.UUZZActivity;
-import com.uuzz.android.ui.fragment.UUZZFragment;
+import com.uuzz.android.ui.fragment.CkFragment;
 import com.uuzz.android.util.BaseArrayHelper;
 import com.uuzz.android.util.Utils;
 import com.uuzz.android.util.ioc.annotation.ContentView;
@@ -59,7 +59,7 @@ public class InjectUtils {
 	 * 注入（布局、控件、事件）
 	 * @param fragment 需要注入的类
 	 */
-	public static void inject(UUZZFragment fragment){
+	public static void inject(CkFragment fragment){
 		injectViews(fragment);
 		injectEvents(fragment);
 	}
@@ -79,6 +79,9 @@ public class InjectUtils {
 		Class superClass = cls;
 		while (true) {
 			superClass = superClass.getSuperclass();
+			if(superClass == null) {
+				break;
+			}
 			classes.add(superClass);
 			if(TextUtils.equals(finalClassName, superClass.getName())) {
 				break;
@@ -177,9 +180,9 @@ public class InjectUtils {
 	 * 给控件注入事件
 	 * @param fragment
 	 */
-	private static void injectEvents(UUZZFragment fragment) {
+	private static void injectEvents(CkFragment fragment) {
 		try {
-			List<Class> classes = getSuperClasses(fragment.getClass(), UUZZFragment.class);
+			List<Class> classes = getSuperClasses(fragment.getClass(), CkFragment.class);
 			for (Class clazz : classes ) {
 				//获取带有OnClick注解的方法
 				Method[] methods = clazz.getDeclaredMethods();
@@ -324,9 +327,9 @@ public class InjectUtils {
 	 * 注入视图，视图注入到属性上
 	 * @param fragment
 	 */
-	private static void injectViews(UUZZFragment fragment) {
+	private static void injectViews(CkFragment fragment) {
 		try {
-			List<Class> classes = getSuperClasses(fragment.getClass(), UUZZFragment.class);
+			List<Class> classes = getSuperClasses(fragment.getClass(), CkFragment.class);
 			for (Class clazz : classes ) {
 				//通过Class获取类的属性列表
 				Field[] fields = clazz.getDeclaredFields();

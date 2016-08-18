@@ -168,7 +168,11 @@ public class ParseTableXML {
 			for (Item item : items) {
 				isChar = false;
 				ormSql.append("[").append(item.getName()).append("] ");
-				if(item.getType().equalsIgnoreCase("INTEGER") || item.getType().equalsIgnoreCase("SHORT") ||item.getType().equalsIgnoreCase("LONG")){
+				if(item.getType().equalsIgnoreCase("INTEGER")
+						|| item.getType().equalsIgnoreCase("SHORT")
+						|| item.getType().equalsIgnoreCase("LONG")
+						|| item.getType().equalsIgnoreCase("DOUBLE")
+						|| item.getType().equalsIgnoreCase("FLOAT")){
 					ormSql.append(item.getType()).append(" ");
 				}else{
 					isChar = true;

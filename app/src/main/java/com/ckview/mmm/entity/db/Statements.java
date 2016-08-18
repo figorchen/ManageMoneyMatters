@@ -18,6 +18,11 @@ import java.io.Serializable;
  * @author 谌珂 <br/>
  */
 public class Statements implements Serializable {
+    /** 收入的标记，大于0小于1999的都是支出 */
+    public static final int OUTCOME = 1999;
+    /** 收入的标记，大于1999小于2999的都是收入 */
+    public static final int INCOME = 2999;
+
     @TableProperty
     private int id;
     @TableProperty

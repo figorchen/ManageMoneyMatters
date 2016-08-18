@@ -1,15 +1,15 @@
 /**
  * 项目名称：手机大管家 <br/>
- * 文件名称: UUZZFragment.java <br/>
+ * 文件名称: CkFragment.java <br/>
  * <p/>
  * Created by 谌珂 on 2016/1/12.  <br/>
  * Copyright 2011 北京壹平台科技有限公司. All rights reserved.[版权声明]
  */
 package com.uuzz.android.ui.fragment;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +19,17 @@ import com.uuzz.android.util.log.UUZZLog;
 
 /**
  * 项目名称：手机大管家 <br/>
- * 类  名: UUZZFragment <br/>
+ * 类  名: CkFragment <br/>
  * 类描述: <br/>
  * 实现的主要功能 <br/>
  * 版    本：1.0.0 <br/>
  * 修改时间：2016/1/12 <br/>
  * @author 谌珂 <br/>
  */
-public abstract class UUZZFragment extends Fragment {
+public abstract class CkFragment extends Fragment {
 
-    /** 类标识TAG */
-    protected final String TAG = getTagName();
     /** 日志对象 */
-    protected final UUZZLog logger = new UUZZLog(TAG);
-
-    /**
-     * 设置TAG名称
-     * @return TAG名称
-     */
-    protected abstract String getTagName();
+    protected final UUZZLog logger = new UUZZLog(getClass().getSimpleName());
 
     protected View mRootView;
 

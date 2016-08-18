@@ -3,4 +3,7 @@
     <item name="btn_income" type="id" />
     <item name="btn_outcome" type="id" />
     <item name="btn_choose_user_account" type="id" />
+    <item name="vp_statements_container" type="id" />
+    <item name="btn_commit" type="id" />
+    <item name="et_loan" type="id" />
 </resources>

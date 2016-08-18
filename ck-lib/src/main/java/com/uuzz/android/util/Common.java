@@ -18,10 +18,6 @@ package com.uuzz.android.util;
  */
 public class Common {
 
-    /** 线程池大小 */
-    public static final int THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors() <= 2 ? Runtime.getRuntime().availableProcessors() : Runtime
-            .getRuntime().availableProcessors() + 1;
-
     /** 包名,只要继承了lib下的Application就不需要在此设置 */
     public static String PACKAGE_NAME;
 
@@ -42,4 +38,11 @@ public class Common {
     public static boolean isShowInfo = true;
     public static boolean isShowWarn = true;
     public static boolean isShowError = true;
+
+    /** 数据库xml配置文件的文件夹路径 */
+    public static final String DB_FOLDER = "databases";
+    /** 数据库名称 */
+    public static final String DB_NAME = "data.db";
+    /** 数据库初始化脚本文件称 */
+    public static final String DB_INIT_SQL = "init.sql";
 }

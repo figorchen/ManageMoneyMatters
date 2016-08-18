@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TableInfo name="m_money_account_type" type="table">
-    <Item name="m_money_account_id" type="INTEGER" identity="true" property="typeId" />
+    <Key name="m_money_account_id" type="INTEGER" identity="true" property="typeId" />
 	<Item name="m_name"  type="CHAR" size="65535" notnull="true" unique="true" property="mName" />
 </TableInfo>
 <!-- integer类型默认32位 ，short默认16位 ，long默认64位  -->

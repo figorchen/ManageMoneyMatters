@@ -28,9 +28,9 @@
     <string name="statements_type_accident_income">意外收入</string>
     <string name="statements_type_someone_return">还款收入</string>
     <string name="statements_type_borrow_from_someone">借款收入</string>
-
-
-
+    <string name="input_money">输入金额</string>
+    <string name="commit">确认</string>
+    <string name="input_correct_money">输入正确的金额</string>
 
 
 </resources>

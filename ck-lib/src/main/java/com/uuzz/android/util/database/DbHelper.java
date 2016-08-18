@@ -21,7 +21,7 @@ public class DbHelper extends SQLiteOpenHelper{
 	/** 初始化数据库接口 */
 	IDbInit mIDbInit;
 
-	public DbHelper(Context context, String name, CursorFactory factory, int version, IDbInit mIDbInit) {
+	DbHelper(Context context, String name, CursorFactory factory, int version, IDbInit mIDbInit) {
 		super(context, name, factory, version);
 		this.mIDbInit = mIDbInit;
 	}
