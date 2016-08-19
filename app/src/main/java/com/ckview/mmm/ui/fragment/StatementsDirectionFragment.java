@@ -9,6 +9,9 @@ import com.uuzz.android.util.ioc.annotation.OnClick;
 
 @ContentView(R.layout.fragment_choose_income_or_outcome)
 public class StatementsDirectionFragment extends BaseStatementsFragment {
+
+    public static final int STATEMENTS_DIRECTION = 0;
+
     /**
      * 描 述：跳转到选择资金账户界面<br/>
      * 作 者：谌珂<br/>

@@ -45,4 +45,9 @@ public class Common {
     public static final String DB_NAME = "data.db";
     /** 数据库初始化脚本文件称 */
     public static final String DB_INIT_SQL = "init.sql";
+
+
+
+//    cd /data/data/com.ckview.mmm/databases
+//      cp data.db /storage/sdcard0
 }

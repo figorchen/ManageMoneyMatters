@@ -40,8 +40,14 @@ public class ListenerInvocationHandler implements InvocationHandler {
 			mtd.setAccessible(true);
 			//当代理对象中OnClick方法传入时，我们执行注入类中mClick方法
 			if(activity != null) {
+				if(mtd.getParameterTypes().length == 0) {
+					return mtd.invoke(activity);
+				}
 				return mtd.invoke(activity, args);
 			} else {
+				if(mtd.getParameterTypes().length == 0) {
+					return mtd.invoke(fragment);
+				}
 				return mtd.invoke(fragment, args);
 			}
 		}

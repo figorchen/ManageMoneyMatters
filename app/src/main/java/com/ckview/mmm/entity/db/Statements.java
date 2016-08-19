@@ -34,7 +34,7 @@ public class Statements implements Serializable {
     @TableProperty
     private int mStatementsType;
     @TableProperty
-    private long sMoney;
+    private double sMoney;
     @TableProperty
     private String sDescription;
     @TableProperty
@@ -43,6 +43,16 @@ public class Statements implements Serializable {
     private int sRelationId;
     @TableProperty
     private int sRelationType;
+    @TableProperty
+    private int sSpender;
+
+    public int getsSpender() {
+        return sSpender;
+    }
+
+    public void setsSpender(int sSpender) {
+        this.sSpender = sSpender;
+    }
 
     public Statements() {
     }
@@ -83,11 +93,11 @@ public class Statements implements Serializable {
         this.mStatementsType = mStatementsType;
     }
 
-    public long getsMoney() {
+    public double getsMoney() {
         return sMoney;
     }
 
-    public void setsMoney(long sMoney) {
+    public void setsMoney(double sMoney) {
         this.sMoney = sMoney;
     }
 
@@ -123,7 +133,7 @@ public class Statements implements Serializable {
         this.sRelationType = sRelationType;
     }
 
-    public Statements(int id, long sTimestamp, int sUserId, int sMoneyAccountId, int mStatementsType, long sMoney, String sDescription, String sImages, int sRelationId, int sRelationType) {
+    public Statements(int id, long sTimestamp, int sUserId, int sMoneyAccountId, int mStatementsType, double sMoney, String sDescription, String sImages, int sRelationId, int sRelationType, int sSpender) {
         this.id = id;
         this.sTimestamp = sTimestamp;
         this.sUserId = sUserId;
@@ -134,5 +144,6 @@ public class Statements implements Serializable {
         this.sImages = sImages;
         this.sRelationId = sRelationId;
         this.sRelationType = sRelationType;
+        this.sSpender = sSpender;
     }
 }

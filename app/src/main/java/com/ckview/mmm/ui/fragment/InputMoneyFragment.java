@@ -1,6 +1,8 @@
 package com.ckview.mmm.ui.fragment;
 
+import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.ckview.mmm.R;
@@ -10,6 +12,9 @@ import com.uuzz.android.util.ioc.annotation.ViewInject;
 
 @ContentView(R.layout.fragment_input_money)
 public class InputMoneyFragment extends BaseStatementsFragment {
+
+    public static final int INPUT_MONEY_FRAGMENT = 1;
+
     @ViewInject(R.id.et_loan)
     private EditText mMoney;
 
@@ -20,9 +25,11 @@ public class InputMoneyFragment extends BaseStatementsFragment {
      */
     @OnClick(R.id.btn_commit)
     private void commit() {
-        long money;
+        InputMethodManager imm = (InputMethodManager)mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mMoney.getWindowToken(),0);
+        double money;
         try {
-            money = Long.valueOf(String.valueOf(mMoney.getText()));
+            money = Double.valueOf(String.valueOf(mMoney.getText()));
         } catch (Exception e) {
             money = 0;
         }

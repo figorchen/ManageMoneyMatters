@@ -231,6 +231,8 @@ public class ParseTableXML {
 		String tableFieldName = orm.getPropertyTableMap().get(beanFieldName);
 		if(TextUtils.isEmpty(tableFieldName)) {
 			//没有找到此属性名对应的字段名
+			//从Bean中找带TablePropertyExtra的注解
+
 			throw new Exception("no such field \""+ beanFieldName +"\" in table named "+tableName+".");
 		}
 		return tableFieldName;

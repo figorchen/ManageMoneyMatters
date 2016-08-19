@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.uuzz.android.util.database.annotation.TableProperty;
+import com.uuzz.android.util.database.annotation.TablePropertyExtra;
 import com.uuzz.android.util.log.UUZZLog;
 
 import org.apache.http.NameValuePair;
@@ -152,8 +153,13 @@ public class BeanUtils {
 				String typeName = field.getType().getSimpleName();
 				beanFieldName = field.getName();
 				try{
-					//根据orm得到表中属性名
-					fieldName = ParseTableXML.getTableFieldName(tableName, beanFieldName);
+					TablePropertyExtra fieldAnnotation = field.getAnnotation(TablePropertyExtra.class);
+					if(fieldAnnotation == null) {   //如果没有TablePropertyExtra则使用表中定义的字段名
+						//根据orm得到表中属性名
+						fieldName = ParseTableXML.getTableFieldName(tableName, beanFieldName);
+					} else{
+						fieldName = fieldAnnotation.value();
+					}
 					if(typeName.equals("String")){
 						field.set(bean, cursor.getString(cursor.getColumnIndex(fieldName)));
 					}else if(typeName.equals("int")){

@@ -46,7 +46,7 @@ public class DataBasesUtil {
     }
 
     private static class InitDatabases implements IDbInit {
-        public InitDatabases(Context context) {
+        InitDatabases(Context context) {
             this.context = context;
         }
 

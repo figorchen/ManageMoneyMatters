@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TableInfo name="s_spender" type="table">
-    <Key name="s_spender_id" type="INTEGER" identity="true" property="id" />
-	<Item name="s_name"  type="CHAR" size="65535" notnull="true" unique="true" property="sName" />
-</TableInfo>
-<!-- integer类型默认32位 ，short默认16位 ，long默认64位  -->

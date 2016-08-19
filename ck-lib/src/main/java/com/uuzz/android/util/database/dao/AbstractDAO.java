@@ -30,16 +30,9 @@ public abstract class AbstractDAO<T> extends Observable {
 	protected ExecutorService service = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
 	/** 日志 */
-	protected UUZZLog logger = new UUZZLog(getTag());
+	protected UUZZLog logger = new UUZZLog(getClass().getSimpleName());
 	/** 数据库 */
 	protected SQLiteDatabase db;
-
-	/**
-	 * 描 述：获取Tag，用于日志tag<br/>
-	 * 作者：谌珂<br/>
-	 * 历 史: (版本) 谌珂 2016/1/25 注释 <br/>
-	 */
-	protected abstract String getTag();
 
 	/**
 	 * @return the db

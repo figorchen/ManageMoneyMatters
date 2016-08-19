@@ -7,7 +7,7 @@
         android:id="@id/et_loan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:hint="@string/input_money"/>
     <Button
         android:id="@id/btn_commit"

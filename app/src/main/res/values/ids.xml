@@ -6,4 +6,8 @@
     <item name="vp_statements_container" type="id" />
     <item name="btn_commit" type="id" />
     <item name="et_loan" type="id" />
+    <item name="lv_listview" type="id" />
+    <item name="gv_gridview" type="id" />
+    <item name="civ_icon" type="id" />
+    <item name="tv_username" type="id" />
 </resources>
