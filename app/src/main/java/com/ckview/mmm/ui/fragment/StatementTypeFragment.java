@@ -8,17 +8,17 @@ import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.OnClick;
 
 @ContentView(R.layout.fragment_choose_income_or_outcome)
-public class StatementsDirectionFragment extends BaseStatementsFragment {
+public class StatementTypeFragment extends BaseStatementsFragment {
 
     public static final int STATEMENTS_DIRECTION = 0;
 
     /**
-     * 描 述：跳转到选择资金账户界面<br/>
+     * 描 述：跳转到输入金额界面<br/>
      * 作 者：谌珂<br/>
      * 历 史: (1.0.0) 谌珂 2016/8/16 <br/>
      */
     @OnClick({R.id.btn_outcome, R.id.btn_income})
-    private void startChooseMoneyAccount(View v) {
+    private void startInputMoney(View v) {
         Statements lStatements = mActivity.getmStatementsData();
         switch (v.getId()) {
             case R.id.btn_outcome:
@@ -30,7 +30,7 @@ public class StatementsDirectionFragment extends BaseStatementsFragment {
             default:
                 throw new IllegalArgumentException();
         }
-        // DONE: 谌珂 2016/8/16  跳转到选择资金账户界面
+        // DONE: 谌珂 2016/8/16  跳转到输入金额界面
         mActivity.nextPage();
     }
 }

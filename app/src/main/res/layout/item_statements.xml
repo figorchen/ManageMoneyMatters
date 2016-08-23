@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/primary_List_margin">
+
+    <TextView
+        android:id="@id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="2016-08-23"/>
+
+    <TextView
+        android:id="@id/tv_statement_type"
+        android:layout_marginTop="@dimen/primary_List_margin"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/primary_text_size"
+        tools:text="吃饭"/>
+
+    <TextView
+        android:id="@id/tv_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/primary_List_margin"
+        android:textSize="@dimen/big_text"
+        tools:text="500.00"
+        android:layout_below="@+id/tv_time"
+        android:layout_toStartOf="@id/cb_check"/>
+
+    <CheckBox
+        android:id="@id/cb_check"
+        android:layout_marginLeft="@dimen/primary_List_margin"
+        android:layout_below="@id/tv_time"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@id/tv_desc"
+        android:layout_marginTop="@dimen/primary_List_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/primary_text_size"
+        tools:text="吹吹吹个大气球，吹个气球玩球球"
+        android:layout_below="@+id/tv_money"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/big_text"
+        android:layout_marginTop="@dimen/primary_List_margin"
+        android:text="@string/money_icon"
+        android:layout_below="@+id/tv_time"
+        android:layout_toStartOf="@+id/tv_money"
+        android:id="@+id/textView" />
+
+</RelativeLayout>

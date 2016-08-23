@@ -12,10 +12,6 @@ import com.uuzz.android.util.database.dao.AbstractDAO;
 import java.util.List;
 
 public class UserInfoDao extends AbstractDAO<UserInfo> {
-    /** 用于监听者发送通知时的标记，全部用户 */
-    public static final int ALL_USER_INFO = 0;
-    /** 用于监听者发送通知时的标记，可支付用户 */
-    public static final int PAYABLE_USER_INFO = 1;
 
     /** 单例 */
     private volatile static UserInfoDao mInstance;
@@ -55,7 +51,7 @@ public class UserInfoDao extends AbstractDAO<UserInfo> {
             @Override
             public void run() {
                 Message msg = Message.obtain();
-                msg.what = PAYABLE_USER_INFO;
+                msg.what = Common.PAYABLE_USER_INFO;
                 msg.obj = select(null, "u_payer = ?", new String[]{"1"}, null, null, null, null);
                 setChanged();
                 notifyObservers(msg);
@@ -73,7 +69,7 @@ public class UserInfoDao extends AbstractDAO<UserInfo> {
             @Override
             public void run() {
                 Message msg = Message.obtain();
-                msg.what = ALL_USER_INFO;
+                msg.what = Common.ALL_USER_INFO;
                 msg.obj = selectAll(null);
                 setChanged();
                 notifyObservers(msg);

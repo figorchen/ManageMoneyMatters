@@ -29,10 +29,25 @@ public class AbstractActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        InjectUtils.restoreInstance(this, savedInstanceState);
         logger = new UUZZLog(getClass());
         InjectUtils.injectContentView(this);
         InjectUtils.injectViews(getWindow().getDecorView(), this);
         InjectUtils.injectEvents(this);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        InjectUtils.restoreInstance(this, savedInstanceState);
+        logger.d("activity restored instances");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        InjectUtils.saveInstances(this, outState);
+        logger.d("activity saved instances");
     }
 
     /**

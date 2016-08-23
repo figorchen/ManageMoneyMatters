@@ -5,7 +5,9 @@
  */
 package com.ckview.mmm.entity.db;
 
+import com.uuzz.android.util.TimeUtil;
 import com.uuzz.android.util.database.annotation.TableProperty;
+import com.uuzz.android.util.database.annotation.TablePropertyExtra;
 
 import java.io.Serializable;
 
@@ -22,11 +24,17 @@ public class Statements implements Serializable {
     public static final int OUTCOME = 1999;
     /** 收入的标记，大于1999小于2999的都是收入 */
     public static final int INCOME = 2999;
+    /** 还款支出的标记 */
+    public static final int OUTCOME_REPAYMENT = 1002;
+    /** 信用卡还款支出标记 */
+    public static final int OUTCOME_CREDIT_CARD_PAYMENT = 1003;
+    /** 还款收入标记 */
+    public static final int INCOME_REPAYMENT = 2002;
 
     @TableProperty
     private int id;
     @TableProperty
-    private long sTimestamp;
+    private long sTimestamp = System.currentTimeMillis();
     @TableProperty
     private int sUserId;
     @TableProperty
@@ -46,11 +54,100 @@ public class Statements implements Serializable {
     @TableProperty
     private int sSpender;
 
+    @TableProperty
+    @TablePropertyExtra("s_type_name")
+    private String sName;
+    @TableProperty
+    @TablePropertyExtra("s_threshold")
+    private double sThreshold;
+    @TableProperty
+    @TablePropertyExtra("s_parent_id")
+    private int sParentId;
+    @TableProperty
+    @TablePropertyExtra("s_left_bound")
+    private int sLeftBound;
+    @TableProperty
+    @TablePropertyExtra("s_right_bound")
+    private int sRightBound;
+    @TableProperty
+    @TablePropertyExtra("s_leaf")
+    private double sIsLeaf;
+    /** 流水数据是否改变过 */
+    private boolean isChanged;
+    /** 流水数据是否已被选中 */
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
+    public double getsIsLeaf() {
+        return sIsLeaf;
+    }
+
+    public void setsIsLeaf(double sIsLeaf) {
+        this.sIsLeaf = sIsLeaf;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public double getsThreshold() {
+        return sThreshold;
+    }
+
+    public void setsThreshold(double sThreshold) {
+        this.sThreshold = sThreshold;
+    }
+
+    public int getsParentId() {
+        return sParentId;
+    }
+
+    public void setsParentId(int sParentId) {
+        this.sParentId = sParentId;
+    }
+
+    public int getsLeftBound() {
+        return sLeftBound;
+    }
+
+    public void setsLeftBound(int sLeftBound) {
+        this.sLeftBound = sLeftBound;
+    }
+
+    public int getsRightBound() {
+        return sRightBound;
+    }
+
+    public void setsRightBound(int sRightBound) {
+        this.sRightBound = sRightBound;
+    }
+
+    public void setChanged(boolean changed) {
+        isChanged = changed;
+    }
+
+    public boolean isChanged() {
+
+        return isChanged;
+    }
+
     public int getsSpender() {
         return sSpender;
     }
 
     public void setsSpender(int sSpender) {
+        isChanged = true;
         this.sSpender = sSpender;
     }
 
@@ -74,6 +171,7 @@ public class Statements implements Serializable {
     }
 
     public void setsUserId(int sUserId) {
+        isChanged = true;
         this.sUserId = sUserId;
     }
 
@@ -82,6 +180,7 @@ public class Statements implements Serializable {
     }
 
     public void setsMoneyAccountId(int sMoneyAccountId) {
+        isChanged = true;
         this.sMoneyAccountId = sMoneyAccountId;
     }
 
@@ -90,6 +189,7 @@ public class Statements implements Serializable {
     }
 
     public void setmStatementsType(int mStatementsType) {
+        isChanged = true;
         this.mStatementsType = mStatementsType;
     }
 
@@ -98,6 +198,7 @@ public class Statements implements Serializable {
     }
 
     public void setsMoney(double sMoney) {
+        isChanged = true;
         this.sMoney = sMoney;
     }
 
@@ -145,5 +246,14 @@ public class Statements implements Serializable {
         this.sRelationId = sRelationId;
         this.sRelationType = sRelationType;
         this.sSpender = sSpender;
+    }
+
+    /**
+     * 描 述：返回流水数据对应的日期<br/>
+     * 作 者：谌珂<br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/23 <br/>
+     */
+    public String getTime() {
+        return TimeUtil.getTime(sTimestamp, TimeUtil.DEFAULT_FORMAT_YYYYMMDD);
     }
 }

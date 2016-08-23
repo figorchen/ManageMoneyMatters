@@ -10,4 +10,13 @@
     <item name="gv_gridview" type="id" />
     <item name="civ_icon" type="id" />
     <item name="tv_username" type="id" />
+    <item name="tv_intent" type="id" />
+    <item name="tv_time" type="id" />
+    <item name="tv_statement_type" type="id" />
+    <item name="tv_desc" type="id" />
+    <item name="tv_money" type="id" />
+    <item name="cb_check" type="id" />
+    <item name="cv_calendar" type="id" />
+    <item name="et_desc" type="id" />
+    <item name="container" type="id" />
 </resources>

@@ -1,7 +1,9 @@
 package com.ckview.mmm.ui.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.widget.Button;
 
 import com.ckview.mmm.R;
@@ -27,6 +29,10 @@ public class MainActivity extends AbstractActivity {
     private Statements mStatementsData = new Statements();
     /** viewpager的适配器 */
     private StatementsProcessAdapter adapter;
+    /** 按下退出按钮记录时间戳 */
+    private long mTimestamp;
+    /** 连续按两次返回按钮退出应用的时间间隔 */
+    public static final long EXIT_DELAY = 2000;
 
     public Statements getmStatementsData() {
         return mStatementsData;
@@ -36,7 +42,7 @@ public class MainActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkPromissions(FileUtil.createPermissions(), new InitFilePath());
-        adapter = new StatementsProcessAdapter(getFragmentManager());
+        adapter = new StatementsProcessAdapter(getFragmentManager(), mStatementsData);
         mStatementsContainer.setAdapter(adapter);
     }
 
@@ -67,11 +73,13 @@ public class MainActivity extends AbstractActivity {
      * 作 者：谌珂<br/>
      * 历 史: (1.0.0) 谌珂 2016/8/17 <br/>
      */
-    public void lastPage() {
+    public boolean lastPage() {
+        adapter.notifyDataSetChanged();
         int index = mStatementsContainer.getCurrentItem() - 1;
         if(index >= 0) {
             mStatementsContainer.setCurrentItem(index, true);
         }
+        return index > 0;
     }
 
     /**
@@ -81,10 +89,25 @@ public class MainActivity extends AbstractActivity {
      */
     public void nextPage() {
         int index = mStatementsContainer.getCurrentItem() + 1;
-        // TODO: 谌珂 2016/8/17 确定一共几个fragment
+        // DONE: 谌珂 2016/8/17 确定一共几个fragment
         if(index < adapter.getCount()) {
             mStatementsContainer.setCurrentItem(index, true);
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if(lastPage()) {
+                return true;
+            } else {
+                if(System.currentTimeMillis() - mTimestamp > EXIT_DELAY) {
+                    mTimestamp = System.currentTimeMillis();
+                    Snackbar.make(mStatementsContainer, R.string.press_again_exit, Snackbar.LENGTH_SHORT).show();
+                    return true;
+                }
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -17,13 +17,6 @@ import java.util.List;
 
 public class MoneyAccountDao extends AbstractDAO<MoneyAccount> {
 
-    public static final int DISPOSABLE_ACCOUNT_FROM_USERID = 0;
-
-    /** 用于监听者发送通知时的标记，全部用户 */
-    public static final int ALL_USER_INFO = 0;
-    /** 用于监听者发送通知时的标记，可支付用户 */
-    public static final int PAYABLE_USER_INFO = 1;
-
     /** 单例 */
     private volatile static MoneyAccountDao mInstance;
 
@@ -65,7 +58,7 @@ public class MoneyAccountDao extends AbstractDAO<MoneyAccount> {
                 if(loginUser == null) {
                     return;
                 }
-                String sql = "select * from m_money_account, m_money_account_type, c_card_info where m_disposable = ? and m_card_id = c_card_id and m_money_account.m_mime_type = m_money_account_type.m_money_account_id and m_user_id = ?";
+                String sql = "select * from (select * from m_money_account left join m_money_account_type on m_money_account.m_mime_type = m_money_account_type.m_money_account_id) left join c_card_info on m_card_id = c_card_id where m_disposable = ? and m_user_id = ? order by m_use_count desc";
                 Cursor cursor = db.rawQuery(sql, new String[]{"1", String.valueOf(loginUser.getId())});
                 List<MoneyAccount> result = new ArrayList<>();
                 while(cursor.moveToNext()){
@@ -74,7 +67,7 @@ public class MoneyAccountDao extends AbstractDAO<MoneyAccount> {
                 cursor.close();
 
                 Message msg = Message.obtain();
-                msg.what = DISPOSABLE_ACCOUNT_FROM_USERID;
+                msg.what = Common.DISPOSABLE_ACCOUNT;
                 msg.obj = result;
                 setChanged();
                 notifyObservers(msg);
