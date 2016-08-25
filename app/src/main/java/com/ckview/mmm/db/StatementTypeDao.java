@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Message;
 
+import com.ckview.mmm.entity.db.Statement;
 import com.ckview.mmm.entity.db.StatementType;
-import com.ckview.mmm.entity.db.Statements;
 import com.uuzz.android.util.database.DataBasesUtil;
 import com.uuzz.android.util.database.dao.AbstractDAO;
 
@@ -49,11 +49,11 @@ public class StatementTypeDao extends AbstractDAO<StatementType> {
      * 历 史: (1.0.0) 谌珂 2016/8/22 <br/>
      * @param data 流水数据
      */
-    public void getIntentAsync(final Statements data) {
+    public void getIntentAsync(final Statement data) {
         AsyncTask.SERIAL_EXECUTOR.execute(new Runnable() {
             @Override
             public void run() {
-                List<StatementType> select = select(null, "s_type_id " + (data.getmStatementsType() == Statements.OUTCOME ? "<" : ">") + " ? and s_leaf = ?", new String[]{String.valueOf(Statements.OUTCOME), "1"}, null, null, "s_parent_id asc", null);
+                List<StatementType> select = select(null, "s_type_id " + (data.getmStatementsType() <= Statement.OUTCOME ? "<" : ">") + " ? and s_leaf = ?", new String[]{String.valueOf(Statement.OUTCOME), "1"}, null, null, "s_parent_id asc", null);
                 Message msg = Message.obtain();
                 msg.what = Common.GET_INTENT_FROM_STATEMENT;
                 msg.obj = select;

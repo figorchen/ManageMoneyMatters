@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.ckview.mmm.R;
-import com.ckview.mmm.entity.db.Statements;
+import com.ckview.mmm.entity.db.Statement;
 import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.OnClick;
 import com.uuzz.android.util.ioc.annotation.ViewInject;
@@ -34,8 +34,8 @@ public class InputMoneyFragment extends BaseStatementsFragment {
         } catch (Exception e) {
             money = 0;
         }
-        mActivity.getmStatementsData().setsMoney(money);
-        if(!checkMoney(mActivity.getmStatementsData())) {
+        mActivity.getmStatementData().setsMoney(money);
+        if(!checkMoney(mActivity.getmStatementData())) {
             Snackbar.make(mMoney, R.string.input_correct_money, Snackbar.LENGTH_SHORT).show();
             return;
         }
@@ -49,7 +49,7 @@ public class InputMoneyFragment extends BaseStatementsFragment {
      * @param data 流水数据
      * @return 合法返回true，非法返回false
      */
-    public static boolean checkMoney(Statements data) {
+    public static boolean checkMoney(Statement data) {
         return data.getsMoney() > 0;
     }
 }

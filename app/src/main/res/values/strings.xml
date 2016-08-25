@@ -33,6 +33,10 @@
     <string name="input_correct_money">输入正确的金额</string>
     <string name="money_icon">¥</string>
     <string name="press_again_exit">再按一次退出应用</string>
+    <string name="add_statement_failure">添加流水失败</string>
+    <string name="add_statement_success">添加流水成功</string>
+    <string name="edit">编辑</string>
+    <string name="change_money_account">修改账户余额</string>
 
 
 </resources>

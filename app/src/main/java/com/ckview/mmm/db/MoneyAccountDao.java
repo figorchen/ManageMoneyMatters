@@ -75,5 +75,17 @@ public class MoneyAccountDao extends AbstractDAO<MoneyAccount> {
         });
     }
 
+    /**
+     * 描 述：修改资金账户余额和活跃度<br/>
+     * 作 者：谌珂<br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/24 <br/>
+     */
+    public void updateMoneyAccount(int accountId, double money) {
+        db.execSQL("update " + getTableName()
+                + " SET m_balance = m_balance + " + String.valueOf(money)
+                + ", m_use_count = m_use_count + 1"
+                + " where m_money_account_id = "+ String.valueOf(accountId));
+    }
+
 
 }

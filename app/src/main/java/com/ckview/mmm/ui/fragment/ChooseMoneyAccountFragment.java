@@ -27,7 +27,7 @@ public class ChooseMoneyAccountFragment extends BaseStatementsFragment implement
 
     /** 用户列表容器 */
     @ViewInject(R.id.gv_gridview)
-    private GridView mListView;
+    private GridView mGridView;
     /** 适配器 */
     private ChooseMoneyAccountAdapter mAdapter;
 
@@ -38,8 +38,8 @@ public class ChooseMoneyAccountFragment extends BaseStatementsFragment implement
         MoneyAccountDao.getInstance(mActivity).addObserver(this);
         MoneyAccountDao.getInstance(mActivity).getDisposableAccountFromUserId();
         setUserId();
-        mListView.setAdapter(mAdapter);
-        mListView.setOnItemClickListener(this);
+        mGridView.setAdapter(mAdapter);
+        mGridView.setOnItemClickListener(this);
     }
 
     /**
@@ -52,7 +52,7 @@ public class ChooseMoneyAccountFragment extends BaseStatementsFragment implement
         if(loginUser == null) {
             return;
         }
-        mActivity.getmStatementsData().setsUserId(loginUser.getId());
+        mActivity.getmStatementData().setsUserId(loginUser.getId());
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ChooseMoneyAccountFragment extends BaseStatementsFragment implement
             return;
         }
         MoneyAccount lMoneyAccount = mAdapter.getItem((int) id);
-        mActivity.getmStatementsData().setsMoneyAccountId(lMoneyAccount.getId());
+        mActivity.getmStatementData().setsMoneyAccountId(lMoneyAccount.getId());
         mActivity.nextPage();
     }
 

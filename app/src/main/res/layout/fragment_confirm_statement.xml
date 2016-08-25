@@ -13,7 +13,8 @@
             android:id="@id/et_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="50dip"
+            android:minLines="5"
+            android:textColor="@color/colorPrimaryText"
             android:hint="描述"/>
 
         <CalendarView

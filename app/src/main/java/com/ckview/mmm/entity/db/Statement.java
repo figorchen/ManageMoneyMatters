@@ -1,6 +1,6 @@
 /**
  * 项目名称：ManageMoneyMatters <br/>
- * 文件名称: Statements.java <br/>
+ * 文件名称: Statement.java <br/>
  * Created by 谌珂 on 2016/8/16.  <br/>
  */
 package com.ckview.mmm.entity.db;
@@ -13,13 +13,13 @@ import java.io.Serializable;
 
 /**
  * 项目名称：ManageMoneyMatters <br/>
- * 类  名: Statements <br/>
+ * 类  名: Statement <br/>
  * 类描述: 流水数据的Bean<br/>
  * 版    本：1.0.0 <br/>
  * 修改时间：2016/8/16 <br/>
  * @author 谌珂 <br/>
  */
-public class Statements implements Serializable {
+public class Statement implements Serializable {
     /** 收入的标记，大于0小于1999的都是支出 */
     public static final int OUTCOME = 1999;
     /** 收入的标记，大于1999小于2999的都是收入 */
@@ -151,7 +151,7 @@ public class Statements implements Serializable {
         this.sSpender = sSpender;
     }
 
-    public Statements() {
+    public Statement() {
     }
 
     public int getId() {
@@ -234,7 +234,7 @@ public class Statements implements Serializable {
         this.sRelationType = sRelationType;
     }
 
-    public Statements(int id, long sTimestamp, int sUserId, int sMoneyAccountId, int mStatementsType, double sMoney, String sDescription, String sImages, int sRelationId, int sRelationType, int sSpender) {
+    public Statement(int id, long sTimestamp, int sUserId, int sMoneyAccountId, int mStatementsType, double sMoney, String sDescription, String sImages, int sRelationId, int sRelationType, int sSpender) {
         this.id = id;
         this.sTimestamp = sTimestamp;
         this.sUserId = sUserId;

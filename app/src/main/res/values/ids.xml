@@ -19,4 +19,8 @@
     <item name="cv_calendar" type="id" />
     <item name="et_desc" type="id" />
     <item name="container" type="id" />
+    <item name="toolbar" type="id" />
+    <item name="drawer_layout" type="id" />
+    <item name="coordinator_layout" type="id" />
+    <item name="btn_change_money_account" type="id" />
 </resources>

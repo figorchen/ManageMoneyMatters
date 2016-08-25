@@ -6,9 +6,9 @@
 package com.ckview.mmm.ui.activity;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 
 import com.uuzz.android.util.PermissionUtil;
 import com.uuzz.android.util.ioc.utils.InjectUtils;
@@ -22,7 +22,7 @@ import com.uuzz.android.util.log.UUZZLog;
  * 修改时间：2016/8/16 <br/>
  * @author 谌珂 <br/>
  */
-public class AbstractActivity extends Activity {
+public class AbstractActivity extends AppCompatActivity {
 
     protected UUZZLog logger;
 
@@ -34,6 +34,7 @@ public class AbstractActivity extends Activity {
         InjectUtils.injectContentView(this);
         InjectUtils.injectViews(getWindow().getDecorView(), this);
         InjectUtils.injectEvents(this);
+        logger.e("44");
     }
 
     @Override

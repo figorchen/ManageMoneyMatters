@@ -34,7 +34,7 @@ public class ChooseIntentFragment extends BaseStatementsFragment implements Obse
         super.onActivityCreated(savedInstanceState);
         mAdapter = new ChooseIntentAdapter(mActivity);
         StatementTypeDao.getInstance(mActivity).addObserver(this);
-        StatementTypeDao.getInstance(mActivity).getIntentAsync(mActivity.getmStatementsData());
+        StatementTypeDao.getInstance(mActivity).getIntentAsync(mActivity.getmStatementData());
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
     }
@@ -55,8 +55,8 @@ public class ChooseIntentFragment extends BaseStatementsFragment implements Obse
         if(id == -1) {
             return;
         }
-        mActivity.getmStatementsData().setmStatementsType(mAdapter.getItem((int) id).getId());
-        mActivity.getmStatementsData().setsName(mAdapter.getItem((int) id).getsName());
+        mActivity.getmStatementData().setmStatementsType(mAdapter.getItem((int) id).getId());
+        mActivity.getmStatementData().setsName(mAdapter.getItem((int) id).getsName());
         mActivity.nextPage();
     }
 

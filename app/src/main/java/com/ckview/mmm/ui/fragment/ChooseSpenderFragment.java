@@ -11,7 +11,7 @@ import com.ckview.mmm.R;
 import com.ckview.mmm.db.Common;
 import com.ckview.mmm.db.UserInfoDao;
 import com.ckview.mmm.entity.db.UserInfo;
-import com.ckview.mmm.ui.adapter.ChooseUserAdapter;
+import com.ckview.mmm.ui.adapter.ChooseSpenderAdapter;
 import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.ViewInject;
 
@@ -20,20 +20,20 @@ import java.util.Observable;
 import java.util.Observer;
 
 @ContentView(R.layout.fragment_choose_user)
-public class ChooseUserFragment extends BaseStatementsFragment implements Observer, AdapterView.OnItemClickListener {
+public class ChooseSpenderFragment extends BaseStatementsFragment implements Observer, AdapterView.OnItemClickListener {
 
-    public static final int CHOOSE_USER_FRAGMENT = 4;
+    public static final int CHOOSE_SPENDER_FRAGMENT = 4;
 
     /** 用户列表容器 */
     @ViewInject(R.id.lv_listview)
     private ListView mListView;
     /** 适配器 */
-    private ChooseUserAdapter mAdapter;
+    private ChooseSpenderAdapter mAdapter;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mAdapter = new ChooseUserAdapter(mActivity);
+        mAdapter = new ChooseSpenderAdapter(mActivity);
         UserInfoDao.getInstance(mActivity).addObserver(this);
         UserInfoDao.getInstance(mActivity).getAllUserAsync();
         mListView.setAdapter(mAdapter);
@@ -46,9 +46,27 @@ public class ChooseUserFragment extends BaseStatementsFragment implements Observ
         switch (msg.what) {
             case Common.ALL_USER_INFO:   //获取完所有的用户信息了
                 mAdapter.setmDatas((List) msg.obj);
+                List<UserInfo> userInfos = mAdapter.getmDatas();
+                for (int i = 0; i < userInfos.size(); i++) {
+                    if(userInfos.get(i).getmLogin()) {
+                        nextPage(userInfos.get(i));
+                        break;
+                    }
+                }
                 break;
             default:
         }
+    }
+
+    /**
+     * 描 述：跳转到下一页<br/>
+     * 作 者：谌珂<br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/25 <br/>
+     * @param userinfo 用户信息
+     */
+    private void nextPage(UserInfo userinfo) {
+        mActivity.getmStatementData().setsSpender(userinfo.getId());
+        mActivity.nextPage();
     }
 
     @Override
@@ -56,9 +74,7 @@ public class ChooseUserFragment extends BaseStatementsFragment implements Observ
         if(id == -1) {
             return;
         }
-        UserInfo lUserInfo = mAdapter.getItem((int) id);
-        mActivity.getmStatementsData().setsSpender(lUserInfo.getId());
-        mActivity.nextPage();
+        nextPage(mAdapter.getItem((int) id));
     }
 
     @Override

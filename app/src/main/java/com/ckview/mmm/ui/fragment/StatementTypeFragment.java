@@ -3,7 +3,7 @@ package com.ckview.mmm.ui.fragment;
 import android.view.View;
 
 import com.ckview.mmm.R;
-import com.ckview.mmm.entity.db.Statements;
+import com.ckview.mmm.entity.db.Statement;
 import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.OnClick;
 
@@ -19,13 +19,13 @@ public class StatementTypeFragment extends BaseStatementsFragment {
      */
     @OnClick({R.id.btn_outcome, R.id.btn_income})
     private void startInputMoney(View v) {
-        Statements lStatements = mActivity.getmStatementsData();
+        Statement lStatement = mActivity.getmStatementData();
         switch (v.getId()) {
             case R.id.btn_outcome:
-                lStatements.setmStatementsType(Statements.OUTCOME);
+                lStatement.setmStatementsType(Statement.OUTCOME);
                 break;
             case R.id.btn_income:
-                lStatements.setmStatementsType(Statements.INCOME);
+                lStatement.setmStatementsType(Statement.INCOME);
                 break;
             default:
                 throw new IllegalArgumentException();

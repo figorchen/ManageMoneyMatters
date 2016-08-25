@@ -91,5 +91,23 @@ public class UserInfoDao extends AbstractDAO<UserInfo> {
         return select.get(0);
     }
 
+    /**
+     * 描 述：改变登录用户<br/>
+     * 作 者：谌珂<br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/25 <br/>
+     */
+    public void changeUser(int userId) {
+        try {
+            db.beginTransaction();
+            db.execSQL("update " + getTableName() + " set u_login = 0");
+            db.execSQL("update " + getTableName() + " set u_login = 1 where u_user_id = " + userId);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            logger.e("change login user failed", e);
+        }finally {
+            db.endTransaction();
+        }
+
+    }
 
 }

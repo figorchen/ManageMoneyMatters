@@ -11,4 +11,10 @@ public class Common {
     public static final int ALL_USER_INFO = 3;
     /** 用于监听者发送通知时的标记，可支付用户 */
     public static final int PAYABLE_USER_INFO = 4;
+    /** 插入流水失败 */
+    public static final int ADD_STATEMENT_FAILURE = 5;
+    /** 插入流水成功 */
+    public static final int ADD_STATEMENT_SUCCESS = 6;
+    /** 获取所有流水 */
+    public static final int GET_ALL_STATEMENT_ = 7;
 }

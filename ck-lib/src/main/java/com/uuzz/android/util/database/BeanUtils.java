@@ -2,6 +2,7 @@ package com.uuzz.android.util.database;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.text.TextUtils;
 
 import com.uuzz.android.util.database.annotation.TableProperty;
 import com.uuzz.android.util.database.annotation.TablePropertyExtra;
@@ -169,7 +170,7 @@ public class BeanUtils {
 					}else if(typeName.equals("double")){
 						field.set(bean, cursor.getDouble(cursor.getColumnIndex(fieldName)));
 					}else if(typeName.equals("boolean")){
-						field.set(bean, Boolean.valueOf(cursor.getString(cursor.getColumnIndex(fieldName))));
+						field.set(bean, TextUtils.equals(cursor.getString(cursor.getColumnIndex(fieldName)), "1"));
 					}else if(typeName.equals("long")){
 						field.set(bean, cursor.getLong(cursor.getColumnIndex(fieldName)));
 					}else if(typeName.equals("short")){

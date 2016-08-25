@@ -12,8 +12,8 @@ import com.uuzz.android.ui.view.CircleImageView;
 import com.uuzz.android.util.ioc.annotation.ViewInject;
 import com.uuzz.android.util.ioc.utils.InjectUtils;
 
-public class ChooseUserAdapter extends BaseListViewAdapter<UserInfo> {
-    public ChooseUserAdapter(Context mContext) {
+public class ChooseSpenderAdapter extends BaseListViewAdapter<UserInfo> {
+    public ChooseSpenderAdapter(Context mContext) {
         super(mContext);
     }
 
@@ -30,7 +30,6 @@ public class ChooseUserAdapter extends BaseListViewAdapter<UserInfo> {
         }
 
         holder.username.setText(temp.getmUserName());
-
         return convertView;
     }
 

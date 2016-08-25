@@ -14,8 +14,8 @@ import com.ckview.mmm.entity.db.Statement;
 import com.uuzz.android.util.ioc.annotation.ViewInject;
 import com.uuzz.android.util.ioc.utils.InjectUtils;
 
-public class ChooseStatementAdapter extends BaseListViewAdapter<Statement> implements AdapterView.OnItemLongClickListener, CompoundButton.OnCheckedChangeListener {
-    public ChooseStatementAdapter(Context mContext) {
+public class StatementAdapter extends BaseListViewAdapter<Statement> implements AdapterView.OnItemLongClickListener, CompoundButton.OnCheckedChangeListener {
+    public StatementAdapter(Context mContext) {
         super(mContext);
     }
     /** 是否显示checkbox */
@@ -45,6 +45,11 @@ public class ChooseStatementAdapter extends BaseListViewAdapter<Statement> imple
         }
         holder.checkBox.setOnCheckedChangeListener(this);
 
+        if(temp.getmStatementsType() < Statement.OUTCOME) {
+            convertView.setBackgroundResource(R.drawable.touchable_background_pink);
+        } else {
+            convertView.setBackgroundResource(R.drawable.touchable_background_green);
+        }
         return convertView;
     }
 

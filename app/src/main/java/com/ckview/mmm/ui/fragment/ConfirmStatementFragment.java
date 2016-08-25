@@ -1,13 +1,17 @@
 package com.ckview.mmm.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ckview.mmm.R;
+import com.ckview.mmm.db.Common;
+import com.ckview.mmm.db.StatementDao;
 import com.ckview.mmm.db.UserInfoDao;
 import com.ckview.mmm.entity.db.UserInfo;
 import com.uuzz.android.util.ioc.annotation.ContentView;
@@ -16,9 +20,11 @@ import com.uuzz.android.util.ioc.annotation.ViewInject;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 
 @ContentView(R.layout.fragment_confirm_statement)
-public class ConfirmStatementFragment extends BaseStatementsFragment implements CalendarView.OnDateChangeListener {
+public class ConfirmStatementFragment extends BaseStatementsFragment implements CalendarView.OnDateChangeListener, Observer {
     /** 确认流水页面 */// TODO: 谌珂 2016/8/23 以后要改成6
     public static final int CONFIRM_STATEMENT_FRAGMENT = 5;
 
@@ -44,11 +50,17 @@ public class ConfirmStatementFragment extends BaseStatementsFragment implements 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        StatementDao.getInstance(mActivity).addObserver(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         mCalendarView.setVisibility(View.GONE);
         mCalendarView.setOnDateChangeListener(this);
-        time.setText(mActivity.getmStatementsData().getTime());
-        statementType.setText(mActivity.getmStatementsData().getsName());
-        money.setText(String.valueOf(mActivity.getmStatementsData().getsMoney()));
+        time.setText(mActivity.getmStatementData().getTime());
+        statementType.setText(mActivity.getmStatementData().getsName());
+        money.setText(String.valueOf(mActivity.getmStatementData().getsMoney()));
         desc.setVisibility(View.GONE);
     }
 
@@ -73,8 +85,9 @@ public class ConfirmStatementFragment extends BaseStatementsFragment implements 
         if(loginUser == null) {
             return;
         }
-        mActivity.getmStatementsData().setsUserId(loginUser.getId());
-        mActivity.getmStatementsData().setsDescription(mDescription.getText().toString());
+        mActivity.getmStatementData().setsUserId(loginUser.getId());
+        mActivity.getmStatementData().setsDescription(mDescription.getText().toString());
+        StatementDao.getInstance(mActivity).addStatement(mActivity.getmStatementData());
     }
 
     /**
@@ -86,8 +99,29 @@ public class ConfirmStatementFragment extends BaseStatementsFragment implements 
     public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
         Calendar calendar = new GregorianCalendar(year, month, dayOfMonth);
         view.setDate(calendar.getTimeInMillis());
-        mActivity.getmStatementsData().setsTimestamp(view.getDate());
-        time.setText(mActivity.getmStatementsData().getTime());
+        mActivity.getmStatementData().setsTimestamp(view.getDate());
+        time.setText(mActivity.getmStatementData().getTime());
         view.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        Message msg = (Message) data;
+        switch (msg.what) {
+            case Common.ADD_STATEMENT_FAILURE :
+                Snackbar.make(time, R.string.add_statement_failure, Snackbar.LENGTH_SHORT).show();
+                break;
+            case Common.ADD_STATEMENT_SUCCESS :
+                // TODO: 谌珂 2016/8/24 替换为关闭Activity
+//                Snackbar.make(time, R.string.add_statement_success, Snackbar.LENGTH_SHORT).show();
+                mActivity.finish();
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        StatementDao.getInstance(mActivity).deleteObserver(this);
+        super.onDestroy();
     }
 }

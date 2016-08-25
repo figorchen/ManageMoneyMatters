@@ -1,24 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity">
+    tools:context=".ui.activity.AddStatementActivity">
 
     <android.support.v4.widget.DrawerLayout
+        android:id="@id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-        <android.support.v4.view.ViewPager
-            android:id="@id/vp_statements_container"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <Button
-            android:id="@id/btn_choose_user_account"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.Toolbar
+                android:id="@id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="60dip"
+                android:background="@color/colorPrimary"
+                app:titleTextColor="@android:color/white" />
+            <ListView
+                android:id="@id/lv_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:listSelector="@null"/>
+        </LinearLayout>
+
+        <com.uuzz.android.ui.view.ShadeView
+            android:id="@+id/v_shader"
+            android:layout_marginTop="60dip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/shader"
+            android:visibility="gone"/>
+
+        <LinearLayout
             android:layout_width="200dip"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/main_choose_user"
-            android:textSize="@dimen/primary_text_size"/>
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:id="@id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@id/btn_choose_user_account"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:text="@string/main_choose_user"
+                android:textSize="@dimen/primary_text_size"/>
+            <Button
+                android:id="@id/btn_change_money_account"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:text="@string/change_money_account"
+                android:textSize="@dimen/primary_text_size"/>
+        </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/head_icon_min_size"
+        app:backgroundTint="@color/colorAccent"
+        app:rippleColor="@color/colorRipperAccent"
+        android:src="@drawable/plus" />
 </android.support.design.widget.CoordinatorLayout>

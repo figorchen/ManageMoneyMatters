@@ -4,7 +4,7 @@
     <Item name="s_timestamp"  type="LONG" notnull="true" unique="false" property="sTimestamp" />
     <Item name="s_user_id"  type="INTEGER" notnull="true" unique="false" property="sUserId"/>
     <Item name="s_money_account_id"  type="INTEGER" notnull="true" unique="false" property="sMoneyAccountId" />
-    <Item name="s_mime_type"  type="INTEGER" notnull="true" unique="true" property="mStatementsType" />
+    <Item name="s_mime_type"  type="INTEGER" notnull="true" unique="false" property="mStatementsType" />
     <Item name="s_money"  type="DOUBLE" notnull="true" unique="false" property="sMoney" />
     <Item name="s_description"  type="CHAR" size="65535" notnull="false" unique="false" property="sDescription" default="" />
     <Item name="s_images"  type="CHAR" size="65535" notnull="false" unique="false" property="sImages" default="" />

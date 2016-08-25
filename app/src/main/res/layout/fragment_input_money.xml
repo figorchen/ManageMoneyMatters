@@ -14,5 +14,6 @@
         android:layout_marginTop="@dimen/primary_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryText"
         android:text="@string/commit"/>
 </LinearLayout>

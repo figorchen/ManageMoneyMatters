@@ -161,10 +161,7 @@ public class InjectUtils {
 							Method setEventListenerMtd = view.getClass().getMethod(listenerSetter, listenerType);
 							if(setEventListenerMtd != null) {
 								setEventListenerMtd.invoke(view, proxy);
-								return;
 							}
-//							setEventListenerMtd = view.getClass().getMethod(listenerSetter, null);
-//							setEventListenerMtd.invoke(null, proxy);
 
 						}
 

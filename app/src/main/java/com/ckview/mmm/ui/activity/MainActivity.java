@@ -1,49 +1,75 @@
 package com.ckview.mmm.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
-import android.widget.Button;
+import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ListView;
 
 import com.ckview.mmm.R;
-import com.ckview.mmm.entity.db.Statements;
-import com.ckview.mmm.ui.adapter.StatementsProcessAdapter;
+import com.ckview.mmm.db.Common;
+import com.ckview.mmm.db.StatementDao;
+import com.ckview.mmm.entity.db.Statement;
+import com.ckview.mmm.ui.adapter.StatementAdapter;
 import com.uuzz.android.util.FileUtil;
 import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.OnClick;
-import com.uuzz.android.util.ioc.annotation.SaveInstance;
 import com.uuzz.android.util.ioc.annotation.ViewInject;
 
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 @ContentView(R.layout.activity_main)
-public class MainActivity extends AbstractActivity {
+public class MainActivity extends AbstractActivity implements Observer {
+    /** 标题栏 */
+    @ViewInject(R.id.toolbar)
+    private Toolbar mToolbar;
+    @ViewInject(R.id.drawer_layout)
+    private DrawerLayout mDrawerLayout;
+    @ViewInject(R.id.lv_listview)
+    private ListView mListView;
+    @ViewInject(R.id.fab)
+    private FloatingActionButton fab;
+    @ViewInject(R.id.v_shader)
+    private View mShader;
+    private ActionBarDrawerToggle drawerToggle;
+    private StatementAdapter mAdapter;
 
-    /** 选择账户按钮 */
-    @ViewInject(R.id.btn_choose_user_account)
-    private Button mChooseAccount;
-    /** 流水流程容器 */
-    @ViewInject(R.id.vp_statements_container)
-    private ViewPager mStatementsContainer;
-    /** 流水数据实体 */
-    @SaveInstance
-    private Statements mStatementsData = new Statements();
-    /** viewpager的适配器 */
-    private StatementsProcessAdapter adapter;
-    /** 按下退出按钮记录时间戳 */
-    private long mTimestamp;
-    /** 连续按两次返回按钮退出应用的时间间隔 */
-    public static final long EXIT_DELAY = 2000;
-
-    public Statements getmStatementsData() {
-        return mStatementsData;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            mToolbar.setNavigationIcon(R.drawable.ic_ab_drawer);
+        }
+        drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.app_name, R.string.app_name);
+        drawerToggle.syncState();
+        mDrawerLayout.setDrawerListener(drawerToggle);
+        checkPromissions(FileUtil.createPermissions(), new MainActivity.InitFilePath());
+        mAdapter = new StatementAdapter(this);
+        mListView.setAdapter(mAdapter);
+        StatementDao.getInstance(this).addObserver(this);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        checkPromissions(FileUtil.createPermissions(), new InitFilePath());
-        adapter = new StatementsProcessAdapter(getFragmentManager(), mStatementsData);
-        mStatementsContainer.setAdapter(adapter);
+    protected void onResume() {
+        StatementDao.getInstance(this).getStatements();
+        super.onResume();
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        Message msg = (Message) data;
+        switch (msg.what) {
+            case Common.GET_ALL_STATEMENT_:
+                mAdapter.setmDatas((List<Statement>) msg.obj);
+                break;
+        }
     }
 
     /**
@@ -59,55 +85,34 @@ public class MainActivity extends AbstractActivity {
     }
 
     /**
+     * 描 述：点击Fab后弹出选项<br/>
+     * 作 者：谌珂<br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/25 <br/>
+     */
+    @OnClick(R.id.fab)
+    private void clickFab() {
+        startActivity(new Intent(this, AddStatementActivity.class));
+    }
+
+    /**
      * 描 述：跳转到选择账户页面<br/>
      * 作 者：谌珂<br/>
      * 历 史: (1.0.0) 谌珂 2016/8/16 <br/>
      */
     @OnClick(R.id.btn_choose_user_account)
     private void startChooseUserAccount() {
-        // TODO: 谌珂 2016/8/16  跳转到选择账户页面
+        // DONE: 谌珂 2016/8/16  跳转到选择账户页面
+        startActivity(new Intent(this, ChoosePayerActivity.class));
     }
 
     /**
-     * 描 述：缓慢滑动到上一个Fragment<br/>
+     * 描 述：跳转到选择账户页面<br/>
      * 作 者：谌珂<br/>
-     * 历 史: (1.0.0) 谌珂 2016/8/17 <br/>
+     * 历 史: (1.0.0) 谌珂 2016/8/16 <br/>
      */
-    public boolean lastPage() {
-        adapter.notifyDataSetChanged();
-        int index = mStatementsContainer.getCurrentItem() - 1;
-        if(index >= 0) {
-            mStatementsContainer.setCurrentItem(index, true);
-        }
-        return index > 0;
-    }
-
-    /**
-     * 描 述：缓慢滑动到下一个Fragment<br/>
-     * 作 者：谌珂<br/>
-     * 历 史: (1.0.0) 谌珂 2016/8/17 <br/>
-     */
-    public void nextPage() {
-        int index = mStatementsContainer.getCurrentItem() + 1;
-        // DONE: 谌珂 2016/8/17 确定一共几个fragment
-        if(index < adapter.getCount()) {
-            mStatementsContainer.setCurrentItem(index, true);
-        }
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            if(lastPage()) {
-                return true;
-            } else {
-                if(System.currentTimeMillis() - mTimestamp > EXIT_DELAY) {
-                    mTimestamp = System.currentTimeMillis();
-                    Snackbar.make(mStatementsContainer, R.string.press_again_exit, Snackbar.LENGTH_SHORT).show();
-                    return true;
-                }
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+    @OnClick(R.id.btn_change_money_account)
+    private void changeMoneyAccount() {
+        // DONE: 谌珂 2016/8/16  跳转到选择账户页面
+        startActivity(new Intent(this, ChoosePayerActivity.class));
     }
 }

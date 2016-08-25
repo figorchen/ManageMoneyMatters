@@ -4,22 +4,22 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.support.v13.app.FragmentPagerAdapter;
 
-import com.ckview.mmm.entity.db.Statements;
+import com.ckview.mmm.entity.db.Statement;
 import com.ckview.mmm.ui.fragment.ChooseBorrowStatementFragment;
 import com.ckview.mmm.ui.fragment.ChooseIntentFragment;
 import com.ckview.mmm.ui.fragment.ChooseMoneyAccountFragment;
-import com.ckview.mmm.ui.fragment.ChooseUserFragment;
+import com.ckview.mmm.ui.fragment.ChooseSpenderFragment;
 import com.ckview.mmm.ui.fragment.ConfirmStatementFragment;
 import com.ckview.mmm.ui.fragment.InputMoneyFragment;
 import com.ckview.mmm.ui.fragment.StatementTypeFragment;
 
 public class StatementsProcessAdapter extends FragmentPagerAdapter {
     /** 流水数据，从activity赋值 */
-    private Statements mStatementsData;
+    private Statement mStatementData;
 
-    public StatementsProcessAdapter(FragmentManager fm, Statements mStatementsData) {
+    public StatementsProcessAdapter(FragmentManager fm, Statement mStatementData) {
         super(fm);
-        this.mStatementsData = mStatementsData;
+        this.mStatementData = mStatementData;
     }
 
     /**
@@ -38,19 +38,20 @@ public class StatementsProcessAdapter extends FragmentPagerAdapter {
                 return new ChooseMoneyAccountFragment();
             case ChooseIntentFragment.CHOOSE_INTENT_FRAGMENT:
                 return new ChooseIntentFragment();
-            case ChooseUserFragment.CHOOSE_USER_FRAGMENT:
-                switch (mStatementsData.getmStatementsType()) {
-                    case Statements.OUTCOME_REPAYMENT :    //还款支出
+            case ChooseSpenderFragment.CHOOSE_SPENDER_FRAGMENT:
+                switch (mStatementData.getmStatementsType()) {
+                    case Statement.OUTCOME_REPAYMENT :    //还款支出
                         return new ChooseBorrowStatementFragment();
-                    case Statements.OUTCOME_CREDIT_CARD_PAYMENT :    //信用卡还款支出
+                    case Statement.OUTCOME_CREDIT_CARD_PAYMENT :    //信用卡还款支出
                         break;
-                    case Statements.INCOME_REPAYMENT :    //还款收入
+                    case Statement.INCOME_REPAYMENT :    //还款收入
                         break;
                     default:
-                        if(mStatementsData.getmStatementsType() < Statements.OUTCOME) {
-                            return new ChooseUserFragment();
+                        if(mStatementData.getmStatementsType() < Statement.OUTCOME) {
+                            return new ChooseSpenderFragment();
                         } else {
                             //生成流水页面
+                            return new ConfirmStatementFragment();
                         }
                 }
                 break;
@@ -63,25 +64,25 @@ public class StatementsProcessAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        if(mStatementsData.isChanged()) {
-            mStatementsData.setChanged(false);
+        if(mStatementData.isChanged()) {
+            mStatementData.setChanged(false);
             notifyDataSetChanged();
         }
         int count = 1;
-        if(mStatementsData.getmStatementsType() == Statements.INCOME
-                || mStatementsData.getmStatementsType() == Statements.OUTCOME) {    //判断是否已经选择过流水类型
+        if(mStatementData.getmStatementsType() == Statement.INCOME
+                || mStatementData.getmStatementsType() == Statement.OUTCOME) {    //判断是否已经选择过流水类型
             count = InputMoneyFragment.INPUT_MONEY_FRAGMENT + 1;
         }
-        if(InputMoneyFragment.checkMoney(mStatementsData)) {                        //已输入有效金额
+        if(InputMoneyFragment.checkMoney(mStatementData)) {                        //已输入有效金额
             count = ChooseMoneyAccountFragment.CHOOSE_MONEY_ACCOUNT_FRAGMENT + 1;
         }
-        if(mStatementsData.getsMoneyAccountId() > 0) {                              //已选择有效资金账户
+        if(mStatementData.getsMoneyAccountId() > 0) {                              //已选择有效资金账户
             count = ChooseIntentFragment.CHOOSE_INTENT_FRAGMENT + 1;
         }
-        if(mStatementsData.getmStatementsType() != Statements.INCOME && mStatementsData.getmStatementsType() != Statements.OUTCOME) {                              //已选择有效资金账户
-            count = ChooseUserFragment.CHOOSE_USER_FRAGMENT + 1;
+        if(mStatementData.getmStatementsType() != Statement.INCOME && mStatementData.getmStatementsType() != Statement.OUTCOME && count > 1) {                              //已选择有效资金账户
+            count = ChooseSpenderFragment.CHOOSE_SPENDER_FRAGMENT + 1;
         }
-        if(mStatementsData.getsSpender() > 0) {
+        if(mStatementData.getsSpender() > 0) {
             count = ConfirmStatementFragment.CONFIRM_STATEMENT_FRAGMENT + 1;
         }
         return count;
