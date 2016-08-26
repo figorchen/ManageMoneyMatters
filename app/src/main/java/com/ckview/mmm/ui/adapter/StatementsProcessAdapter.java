@@ -7,7 +7,6 @@ import android.support.v13.app.FragmentPagerAdapter;
 import com.ckview.mmm.entity.db.Statement;
 import com.ckview.mmm.ui.fragment.ChooseBorrowStatementFragment;
 import com.ckview.mmm.ui.fragment.ChooseIntentFragment;
-import com.ckview.mmm.ui.fragment.ChooseMoneyAccountFragment;
 import com.ckview.mmm.ui.fragment.ChooseSpenderFragment;
 import com.ckview.mmm.ui.fragment.ConfirmStatementFragment;
 import com.ckview.mmm.ui.fragment.InputMoneyFragment;
@@ -34,8 +33,6 @@ public class StatementsProcessAdapter extends FragmentPagerAdapter {
                 return new StatementTypeFragment();
             case InputMoneyFragment.INPUT_MONEY_FRAGMENT:
                 return new InputMoneyFragment();
-            case ChooseMoneyAccountFragment.CHOOSE_MONEY_ACCOUNT_FRAGMENT:
-                return new ChooseMoneyAccountFragment();
             case ChooseIntentFragment.CHOOSE_INTENT_FRAGMENT:
                 return new ChooseIntentFragment();
             case ChooseSpenderFragment.CHOOSE_SPENDER_FRAGMENT:
@@ -73,10 +70,10 @@ public class StatementsProcessAdapter extends FragmentPagerAdapter {
                 || mStatementData.getmStatementsType() == Statement.OUTCOME) {    //判断是否已经选择过流水类型
             count = InputMoneyFragment.INPUT_MONEY_FRAGMENT + 1;
         }
-        if(InputMoneyFragment.checkMoney(mStatementData)) {                        //已输入有效金额
-            count = ChooseMoneyAccountFragment.CHOOSE_MONEY_ACCOUNT_FRAGMENT + 1;
-        }
-        if(mStatementData.getsMoneyAccountId() > 0) {                              //已选择有效资金账户
+//        if(InputMoneyFragment.checkMoney(mStatementData)) {
+//            count = ChooseMoneyAccountFragment.CHOOSE_MONEY_ACCOUNT_FRAGMENT + 1;
+//        }
+        if(InputMoneyFragment.checkMoney(mStatementData) && mStatementData.getsMoneyAccountId() > 0) {       //已输入有效金额且已选择有效资金账户
             count = ChooseIntentFragment.CHOOSE_INTENT_FRAGMENT + 1;
         }
         if(mStatementData.getmStatementsType() != Statement.INCOME && mStatementData.getmStatementsType() != Statement.OUTCOME && count > 1) {                              //已选择有效资金账户

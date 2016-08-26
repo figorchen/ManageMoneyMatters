@@ -22,7 +22,7 @@ import java.util.Observer;
 @ContentView(R.layout.fragment_choose_user)
 public class ChooseSpenderFragment extends BaseStatementsFragment implements Observer, AdapterView.OnItemClickListener {
 
-    public static final int CHOOSE_SPENDER_FRAGMENT = 4;
+    public static final int CHOOSE_SPENDER_FRAGMENT = 3;
 
     /** 用户列表容器 */
     @ViewInject(R.id.lv_listview)

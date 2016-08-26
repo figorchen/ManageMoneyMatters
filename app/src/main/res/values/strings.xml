@@ -37,6 +37,8 @@
     <string name="add_statement_success">添加流水成功</string>
     <string name="edit">编辑</string>
     <string name="change_money_account">修改账户余额</string>
+    <string name="change_money_account_blance_success">修改余额成功</string>
+    <string name="change_money_account_blance_failed">修改余额失败</string>
 
 
 </resources>

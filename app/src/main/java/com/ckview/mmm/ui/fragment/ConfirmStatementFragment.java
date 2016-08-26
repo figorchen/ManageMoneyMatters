@@ -25,8 +25,8 @@ import java.util.Observer;
 
 @ContentView(R.layout.fragment_confirm_statement)
 public class ConfirmStatementFragment extends BaseStatementsFragment implements CalendarView.OnDateChangeListener, Observer {
-    /** 确认流水页面 */// TODO: 谌珂 2016/8/23 以后要改成6
-    public static final int CONFIRM_STATEMENT_FRAGMENT = 5;
+    /** 确认流水页面 */// TODO: 谌珂 2016/8/23 以后要改成5
+    public static final int CONFIRM_STATEMENT_FRAGMENT = 4;
 
     /** 流水时间 */
     @ViewInject(R.id.tv_time)

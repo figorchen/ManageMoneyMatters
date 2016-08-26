@@ -21,7 +21,7 @@ import java.util.Observer;
 @ContentView(R.layout.fragment_choose_user)
 public class ChooseIntentFragment extends BaseStatementsFragment implements Observer, AdapterView.OnItemClickListener {
     /** 选择流水意图 */
-    public static final int CHOOSE_INTENT_FRAGMENT = 3;
+    public static final int CHOOSE_INTENT_FRAGMENT = 2;
 
     /** 流水意图容器 */
     @ViewInject(R.id.lv_listview)

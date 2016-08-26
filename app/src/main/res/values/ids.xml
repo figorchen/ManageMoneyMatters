@@ -7,6 +7,7 @@
     <item name="btn_commit" type="id" />
     <item name="et_loan" type="id" />
     <item name="lv_listview" type="id" />
+    <item name="rv_recyclerview" type="id" />
     <item name="gv_gridview" type="id" />
     <item name="civ_icon" type="id" />
     <item name="tv_username" type="id" />
@@ -23,4 +24,5 @@
     <item name="drawer_layout" type="id" />
     <item name="coordinator_layout" type="id" />
     <item name="btn_change_money_account" type="id" />
+    <item name="tv_bank_name" type="id" />
 </resources>

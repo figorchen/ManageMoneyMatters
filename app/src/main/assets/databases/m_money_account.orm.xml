@@ -4,7 +4,7 @@
 	<Item name="m_user_id"  type="INTEGER" notnull="true" unique="false" property="mUserId" />
 	<Item name="m_mime_type"  type="INTEGER" notnull="true" unique="false" property="mAccountType"/>
 	<Item name="m_disposable"  type="BOOLEAN" notnull="true" unique="false" property="mDisposable" />
-	<Item name="m_card_id"  type="INTEGER" notnull="false" unique="true" property="mCardId" />
+	<Item name="m_card_id"  type="INTEGER" notnull="false" unique="false" property="mCardId" />
 	<Item name="m_description"  type="CHAR" size="65535" notnull="false" unique="false" property="mDescription" default="" />
 	<Item name="m_balance"  type="DOUBLE" notnull="false" unique="false" property="mBalance" default="true" />
 	<Item name="m_use_count"  type="INTEGER" notnull="true" unique="false" property="mUseCount" default="0" />

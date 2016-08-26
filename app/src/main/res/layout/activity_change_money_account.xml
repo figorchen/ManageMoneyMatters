@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:padding="@dimen/primary_margin"
+    android:focusableInTouchMode="true">
+    <LinearLayout
+        android:id="@id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/primary_margin">
+        <com.uuzz.android.ui.view.AutoSizeTextView
+            android:id="@id/tv_bank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:lines="1"
+            android:textSize="@dimen/head_icon_max_size"
+            tools:text="建设银行"/>
+        <include layout="@layout/fragment_input_money"/>
+    </LinearLayout>
+    <include layout="@layout/fragment_choose_money_account"/>
+</LinearLayout>

@@ -1,7 +1,7 @@
 package com.ckview.mmm.db;
 
 public class Common {
-    /** 监听者标记，获取可支配资金账户 */
+    /** 监听者标记，获取登录用户的可支配资金账户 */
     public static final int DISPOSABLE_ACCOUNT = 0;
     /** 获取借款收入的流水 */
     public static final int INCOME_BORROW_STATEMENTS = 1;
@@ -17,4 +17,6 @@ public class Common {
     public static final int ADD_STATEMENT_SUCCESS = 6;
     /** 获取所有流水 */
     public static final int GET_ALL_STATEMENT_ = 7;
+    /** 获取登录用户的资金账户 */
+    public static final int MONEY_ACCOUNT = 8;
 }

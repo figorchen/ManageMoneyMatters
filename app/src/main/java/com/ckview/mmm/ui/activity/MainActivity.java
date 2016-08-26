@@ -6,15 +6,21 @@ import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
 import com.ckview.mmm.R;
 import com.ckview.mmm.db.Common;
 import com.ckview.mmm.db.StatementDao;
 import com.ckview.mmm.entity.db.Statement;
-import com.ckview.mmm.ui.adapter.StatementAdapter;
+import com.ckview.mmm.ui.adapter.RecylerStatementAdapter;
 import com.uuzz.android.util.FileUtil;
 import com.uuzz.android.util.ioc.annotation.ContentView;
 import com.uuzz.android.util.ioc.annotation.OnClick;
@@ -33,16 +39,30 @@ public class MainActivity extends AbstractActivity implements Observer {
     private DrawerLayout mDrawerLayout;
     @ViewInject(R.id.lv_listview)
     private ListView mListView;
+    @ViewInject(R.id.rv_recyclerview)
+    private RecyclerView mRecyclerView;
     @ViewInject(R.id.fab)
     private FloatingActionButton fab;
     @ViewInject(R.id.v_shader)
     private View mShader;
     private ActionBarDrawerToggle drawerToggle;
-    private StatementAdapter mAdapter;
+    private RecylerStatementAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 测试 SDK 是否正常工作的代码
+        AVObject testObject = new AVObject("TestObject");
+        testObject.put("words","Hello World!");
+        testObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if(e == null){
+                    Log.e("saved","success!");
+                }
+                logger.e("222222222222", e);
+            }
+        });
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
             mToolbar.setNavigationIcon(R.drawable.ic_ab_drawer);
@@ -51,9 +71,12 @@ public class MainActivity extends AbstractActivity implements Observer {
         drawerToggle.syncState();
         mDrawerLayout.setDrawerListener(drawerToggle);
         checkPromissions(FileUtil.createPermissions(), new MainActivity.InitFilePath());
-        mAdapter = new StatementAdapter(this);
-        mListView.setAdapter(mAdapter);
+        mAdapter = new RecylerStatementAdapter(this);
+//        mListView.setAdapter(mAdapter);
         StatementDao.getInstance(this).addObserver(this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -113,6 +136,6 @@ public class MainActivity extends AbstractActivity implements Observer {
     @OnClick(R.id.btn_change_money_account)
     private void changeMoneyAccount() {
         // DONE: 谌珂 2016/8/16  跳转到选择账户页面
-        startActivity(new Intent(this, ChoosePayerActivity.class));
+        startActivity(new Intent(this, ChangeMoneyAccountActivity.class));
     }
 }

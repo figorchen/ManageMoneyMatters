@@ -8,5 +8,7 @@
     <color name="colorPrimaryTextDark">#999999</color>
     <color name="green">#00FF00</color>
     <color name="greenDark">#009900</color>
+    <color name="yellow">#FFDF00</color>
+    <color name="yellowDark">#AF8F00</color>
 
 </resources>

@@ -34,7 +34,6 @@ public class AbstractActivity extends AppCompatActivity {
         InjectUtils.injectContentView(this);
         InjectUtils.injectViews(getWindow().getDecorView(), this);
         InjectUtils.injectEvents(this);
-        logger.e("44");
     }
 
     @Override

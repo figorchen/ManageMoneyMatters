@@ -26,4 +26,6 @@ dependencies {
     compile project(':ck-lib')
     compile 'com.android.support:design:24.0.0-alpha2'
     compile 'com.android.support:support-v13:24.0.0-alpha2'
+    // LeanCloud 基础包
+    compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
 }

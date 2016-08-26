@@ -79,6 +79,7 @@ public class BeanUtils {
 	 */
 	private static void putFieldValue(String tableName, Object obj, boolean isContainKey, ContentValues maps, Field[] fields) {
 		String fieldName;
+		String value;
 		String keyFieldName = ParseTableXML.getKeyFieldName(tableName);
 		for (Field field : fields) {
 			try {
@@ -86,18 +87,24 @@ public class BeanUtils {
 				if(annotation == null) {   //如果没有TableProperty注解则直接跳过
 					continue;
 				}
-				if(isContainKey){
-					fieldName = ParseTableXML.getTableFieldName(tableName, field.getName());
-					maps.put(fieldName, String.valueOf( BeanUtils.getValueByField(obj, field)));
-				}else{
-					if(!field.getName().equalsIgnoreCase(keyFieldName)){
-						fieldName = ParseTableXML.getTableFieldName(tableName, field.getName());
-						maps.put(fieldName, String.valueOf( BeanUtils.getValueByField(obj, field)));
-					}
+				if(field.getName().equalsIgnoreCase(keyFieldName) && !isContainKey) {
+					continue;
 				}
+				fieldName = ParseTableXML.getTableFieldName(tableName, field.getName());
+				value = String.valueOf( BeanUtils.getValueByField(obj, field));
+				switch (value) {
+					case "true" :
+						value = "1";
+						break;
+					case "false" :
+						value = "0";
+						break;
+					default:
+						break;
+				}
+				maps.put(fieldName, value);
 			} catch (Exception e) {
 				logger.d("Transform bean to ContentValues failed", e);
-				e.printStackTrace();
 			}
 		}
 	}
